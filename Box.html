@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Box</title>
+<style>
+    .container {
+        position: relative;
+        width: 50%;
+        height: 20cm;
+        background-color: gray;
+    }
+    
+    .box2 {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 6cm;
+        background-color: red;
+    }
+    
+    .box3 {
+        position: absolute;
+        top: 6cm;
+        width: 3cm;
+        height: 5cm;
+        background-color: blue;
+    }
+</style>
+</head>
+<body>
 
+<div class="container">
+    Box 1
+    <div class="box2">
+        Box 2
+    </div>
+</div>
+
+<div class="box3">
+    Box 3
+</div>
+
+</body>
+</html>
