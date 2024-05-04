@@ -66,7 +66,7 @@ li.dropdown {
   text-align: left;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown-content a:hover {background-color: #111;}
 
 .dropdown:hover .dropdown-content {
   display: block;
@@ -77,16 +77,21 @@ li.dropdown {
 <p>questa è la navbar di una azienda che vende prodotti online</p>
 <ul class="ul">
   <li class="li"><a href="">home</a></li>
-  <li  class="li"><a href="">prodotti</a></li>
+<li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">prodotti</a>
+    <div class="dropdown-content">
+      <a href="#">riciclabili</a>
+      <a href="#"></a>ecosostenibili</a>
+      <a href="#"></a>
   <li  class="li"><a href="">chi siamo</a></li>
   <li  class="li"><a href="">di cosa ci occupiamo </a></li>
  <li class="li"><a href="">dove trovarci</a></li>
    <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+    <a href="javascript:void(0)" class="dropbtn">contatti</a>
     <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="#">numero telefonico</a>
+      <a href="#"></a>e-mail</a>
+      <a href="#">social</a>
     </div>
   </li>
 </ul>
