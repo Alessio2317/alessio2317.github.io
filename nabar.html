@@ -1,38 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>navbar</title>
-  <style>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
 
-  
-  lu{margin:0;
-    padding:0;
-     overflow: hidden;
-      background-color: purple;}
-    
-  li{float: left;}
-    
-  li a{color: white;
-       text-align: centet;
-          font-size: large;
-          float:left;
-         padding: 14px;}
+li {
+  float: left;
+}
 
-  li a:hover{back-ground-color: green;}
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
 </style>
 </head>
-  <body>
-    <lu>
-      <li><a href="#home">home</a></li>
-      <li><a href="#prodotti">prodotti</a></li>
-      <li><a href="#chi siamo">chi siamo</a></li>
-      <li><a href="#sede centrale">sede centrale</a></li>
-      <li><a href="#contatti">contatti</a></li>
-    </lu>
-  
+<body>
+
+<ul>
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="#about">About</a></li>
+</ul>
+
 </body>
 </html>
-
 
