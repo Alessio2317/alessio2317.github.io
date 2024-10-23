@@ -12,7 +12,7 @@
         
         .row {display: flex;
             justify-content: space-between;
-            width: 40%;}
+            width: 20px;}
     </style>
 
 </head>
@@ -53,11 +53,10 @@
                 result = operatore1 * operatore2;
                 break;
             case '/':
-                result = num2 !== 0 ? operatore1 / num2 : 'Errore: Divisione per zero';
+                result = num2 !== 0 ? operatore1 / operatore2 : 'errore un numero è uguale a 0 e l operazione non è fattibile';
                 break;}
         
-        document.getElementById('result').innerText='risultato operazione:'+result;
-    }
+        document.getElementById('result').innerText='risultato operazione:'+result;}
    
 </script>
 </body>
