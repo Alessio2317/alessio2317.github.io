@@ -4,14 +4,12 @@
     
     <title>Layout Box</title>
     <style><meta name="viewport" content="width=device-width, initial-scale=1.0">
-        body {
-            font-family: Arial, sans-serif;
+        body {font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0;
-        }
-        }
+            margin: 0;}
+        
         .row {display: flex;
             justify-content: space-between;
             width: 80%;}
@@ -24,7 +22,7 @@
     <input type="text" id="num1" placeholder="numero1">
     <input type="text" id="num2" placeholder="numero2">
         
-    
+    <div class="row">
         
         <button onclick="calculate('+')">+</button>
         <button onclick="calculate('-')">-</button>
@@ -32,6 +30,7 @@
        <button onclick="calculate('*')">*</button>
     <h3 id="result">Risultato: </h3>
         
+        </div>
 <script>
     
     function calculate(operator) {
