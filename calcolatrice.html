@@ -28,34 +28,34 @@
         <button onclick="calculate('-')">-</button>
        <button onclick="calculate('/')">/</button>
        <button onclick="calculate('*')">*</button>
-    <h3 id="result">Risultato: </h3>
+    <h3 id="result">risultato operazione: </h3>
         
         </div>
 <script>
     
     function calculate(operator) {
-        const num1 = parseFloat(document.getElementById('num1').value);
-        const num2 = parseFloat(document.getElementById('num2').value);
+        const operatore1 = parseFloat(document.getElementById('operatore1').value);
+        const operatore2 = parseFloat(document.getElementById('operatore2').value);
         let result;
 
-        if (isNaN(num1) || isNaN(num2)) {
+        if (isNaN(operatore1) || isNaN(operatore2)) {
             document.getElementById('result').innerText = 'Errore: Inserisci due numeri validi';
             return;}
 
         switch (operator) {
             case '+':
-                result = num1 + num2;
+                result = operatore1 + operatore2;
                 break;
             case '-':
-                result = num1 - num2;
+                result = operatore1 - operatore2;
                 break;
             case '*':
-                result = num1 * num2;
+                result = operatore1 * operatore2;
                 break;
             case '/':
-                result = num2 !== 0 ? num1 / num2 : 'Errore: Divisione per zero';
+                result = num2 !== 0 ? operatore1 / num2 : 'Errore: Divisione per zero';
                 break;}
-
+        document.getElementById('result').innerText='risultato operazione:'+result;
    
 </script>
 </body>
