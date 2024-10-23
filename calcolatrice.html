@@ -12,7 +12,8 @@
         
         .row {display: flex;
             justify-content: space-between;
-            width: 20px;}
+            width: 20px;
+             margin-left: - 20px;}
         
         .operazoni{height:30px;
              width:30px;
@@ -29,13 +30,13 @@
     <input type="text" id="operatore1" placeholder="numero1">
     <input type="text" id="operatore2" placeholder="numero2">
       
-   
+    <div class="row">
         
         <div class='operazoni'><button onclick="calculate('+')">+</button></div>
         <div class='operazoni'><button onclick="calculate('-')">-</button></div>
        <div class='operazoni'><button onclick="calculate('/')">/</button></div>
        <div class='operazoni'><button onclick="calculate('*')">*</button></div>
-   
+    </div>
         <h3 id="result">risultato operazione: </h3>
 <script>
     
