@@ -1,103 +1,111 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <link rel="icon" type="image/x-icon" href="rondo.jpg">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
     <style>
-         body {font-family: Arial, sans-serif;
+        body {
+            font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;}
-
-       
-           
-        
+            margin: 0;
+            padding: 20px;
+        }
 
         input {
-            background-color:  rgb(0, 0, 0);
-            color:aliceblue;
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;}
+            width: 100px;
+            height: 30px;
+            margin: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
 
-        .buttons {
+        .row {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .operazoni {
+            margin: 0 10px;
         }
 
         button {
-            padding: 15px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            background-color: #ffa600;
-            color: #ccc;
-            cursor: pointer;
-            flex: 1;
-            margin: 0 5px;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
         }
 
-        button:hover {
-            background-color: #ffa600;
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
         }
     </style>
 </head>
+
 <body>
-
-        <input type="text" id="input" placeholder=" " />
-        <div class="buttons">
-            <button onclick="setOperation('+')">+</button>
-            <button onclick="setOperation('-')">-</button>
-            <button onclick="setOperation('')"></button>
-            <button onclick="setOperation('/')">/</button>
-            <button onclick="setOperation('=')">=</button>
-        </div>
-        <input type="text" id="output" placeholder=" " readonly />
-   
+    <input type="text" id="numero" placeholder="Inserisci un numero">
+    
+    <div class="row">
+        <div class='operazoni'><button onclick="setOperation('+')">+</button></div>
+        <div class='operazoni'><button onclick="setOperation('-')">-</button></div>
+        <div class='operazoni'><button onclick="setOperation('/')">/</button></div>
+        <div class='operazoni'><button onclick="setOperation('*')">*</button></div>
+        <div class='operazoni'><button onclick="calculate()">=</button></div>
+    </div>
+    
+    <h3 id="result">Risultato operazione: </h3>
+    
     <script>
-        let primo = null;
-        let b = null;
-        let a=null;
+        let firstNumber = null;
+        let operation = null;
 
-        function setOperation(operator) {
-            const input = document.getElementById('input');
-            if (primo === null) {
-                primo = parseFloat(input.value);
-                b = operator;
-                input.value = ''; 
-            } else {
-                const secondValue = parseFloat(input.value);
-                const risultato= Calcoli(primo, secondValue, b);
-                document.getElementById('output').value = risultato;
-                primo = null; 
-                b = null; 
-                input.value = ''; 
+        function setOperation(op) {
+            const inputField = document.getElementById('numero');
+            firstNumber = parseFloat(inputField.value);
+
+            if (isNaN(firstNumber)) {
+                document.getElementById('result').innerText = 'Errore: Inserisci un numero valido';
+                return;
             }
+
+            operation = op;
+            inputField.value = ''; // Cancella il campo per il secondo numero
         }
 
-        function Calcoli(first, second, operator) {
-            switch (operator) {
-                case '+':
-                    return   a = first + second;
-                  
-                case '-':
-                    return  a= first - second;
-                   
-                case '*':
-                    return  a = first * second;
-                case '/':
-                    return  a = second !== 0 ? first / second : 'Errore: Divisione per zero';
+        function calculate() {
+            const inputField = document.getElementById('numero');
+            const secondNumber = parseFloat(inputField.value);
 
-                case '=':
-                    return  a;
-                   
-                
+            if (isNaN(secondNumber) || operation === null) {
+                document.getElementById('result').innerText = 'Errore: Inserisci il secondo numero e un\'operazione valida';
+                return;
             }
+
+            let result;
+
+            switch (operation) {
+                case '+':
+                    result = firstNumber + secondNumber;
+                    break;
+                case '-':
+                    result = firstNumber - secondNumber;
+                    break;
+                case '*':
+                    result = firstNumber * secondNumber;
+                    break;
+                case '/':
+                    result = secondNumber !== 0 ? firstNumber / secondNumber : 'Errore: Divisione per zero non è permessa';
+                    break;
+                default:
+                    result = 'Operazione non valida';
+            }
+            document.getElementById('result').innerText = 'Risultato operazione: ' + result;
+
+            // Resetta le variabili per il prossimo calcolo
+            firstNumber = null;
+            operation = null;
+            inputField.value = ''; // Pulisci il campo input
         }
     </script>
 </body>
