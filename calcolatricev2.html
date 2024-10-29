@@ -18,8 +18,7 @@
             font-size: 16px;
             text-align: center;}
 
-        .row {
-            display: flex;
+        .row {display: flex;
             justify-content: center;
             margin: 10px 0;}
 
@@ -33,8 +32,9 @@
 
         #result {
             margin-top: 20px;
-            font-size: 20px;
-        }
+            font-size: 20px;}
+
+        
     </style>
 </head>
 
@@ -52,45 +52,45 @@
     <h3 id="result">Risultato operazione: </h3>
     
     <script>
-        let firstNumber = null;
-        let operation = null;
+        let num1 = null;
+        let operazione = null;
 
         function setOperation(op) {
             const inputField = document.getElementById('numero');
-            firstNumber = parseFloat(inputField.value);
+            num1 = parseFloat(inputField.value);
 
-            if (isNaN(firstNumber)) {
+            if (isNaN(num1)) {
                 document.getElementById('result').innerText = 'Errore: Inserisci un numero valido';
                 return;
             }
 
-            operation = op;
-            inputField.value = ''; // Cancella il campo per il secondo numero
+            operazione = op;
+            inputField.value = '';
         }
 
         function calculate() {
             const inputField = document.getElementById('numero');
-            const secondNumber = parseFloat(inputField.value);
+            const num2 = parseFloat(inputField.value);
 
-            if (isNaN(secondNumber) || operation === null) {
+            if (isNaN(num2) || operazione === null) {
                 document.getElementById('result').innerText = 'Errore: Inserisci il secondo numero e un\'operazione valida';
                 return;
             }
 
             let result;
 
-            switch (operation) {
+            switch (operazione) {
                 case '+':
-                    result = firstNumber + secondNumber;
+                    result = num1 +num2;
                     break;
                 case '-':
-                    result = firstNumber - secondNumber;
+                    result = num1 -num2;
                     break;
                 case '*':
-                    result = firstNumber * secondNumber;
+                    result = num1 *num2;
                     break;
                 case '/':
-                    result = secondNumber !== 0 ? firstNumber / secondNumber : 'Errore: Divisione per zero non è permessa';
+                    result = num2 !== 0 ? num1 / num2 : 'Errore: Divisione per zero non è permessa';
                     break;
                 default:
                     result = 'Operazione non valida';
@@ -98,8 +98,8 @@
             document.getElementById('result').innerText = 'Risultato operazione: ' + result;
 
            
-            firstNumber = null;
-            operation = null;
+            num1 = null;
+            operazione = null;
             inputField.value = ''; 
         }
     </script>
