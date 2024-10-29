@@ -4,10 +4,10 @@
     <link rel="icon" type="image/x-icon" href="rondo.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+    <title>Calcolatrice2</title>
     <style>
          body {
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -85,8 +85,9 @@
                 const risultato= Calcoli(primo, secondValue, b);
                 document.getElementById('output').value = risultato;
                 primo = null; 
-                b = null;e
-                input.value = '';
+                b = null; 
+                input.value = ''; 
+            }
         }
 
         function Calcoli(first, second, operator) {
