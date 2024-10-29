@@ -59,7 +59,7 @@
                 result = operatore1 * operatore2;
                 break;
             case '/':
-                result = num2 !== 0 ? operatore1 / operatore2 : 'errore un numero è uguale a 0 e l operazione non è fattibile';
+                result = operatore2 !== 0 ? operatore1 / operatore2 : 'errore un numero è uguale a 0 e l operazione non è fattibile';
                 break;}
         document.getElementById('result').innerText='risultato operazione:'+result;}
    
