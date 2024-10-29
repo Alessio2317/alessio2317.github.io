@@ -3,32 +3,28 @@
 <head>
     <meta charset="UTF-8">
  <style>
-        body {
-            font-family: Arial;
+        body {font-family: Arial;
             display: flex;
             flex-direction: column;
             align-items: center;
             margin: 0;
-            padding: 50px;
-        }
-        input {
-            width: 200px;
+            padding: 50px;}
+     
+        input {width: 200px;
             height: 40px;
             font-size: 20px;
             text-align: left;
             margin-bottom: 10px;
             border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 50px;
+            border-radius: 5px;}
+     
+        button {width: 50px;
             height: 50px;
             font-size: 20px;
-            margin-top: 10px;
-        }
-        h3 {
-            margin-top: 20px;
-        }
+            margin-top: 10px;}
+     
+        h3 {margin-top: 20px;}
+     
     </style>
 </head>
 <body>
@@ -36,21 +32,15 @@
     <input type="text" id="input" placeholder="Inserisci operazione">
     <button onclick="calculate()">=</button>
     <h3 id="result">Risultato: </h3>
-
-    <script>
+  <script>
         function calculate() {
             const input = document.getElementById('input').value;
-           try {
-                const result = eval(input);
-                if (input.includes('/') && input.split('/').pop() === '0') {
-                    throw new Error('Errore: Inserisci un\'operazione valida');
-                }
-
-                document.getElementById('result').innerText = 'Risultato: ' + result;
-            } catch (error) {
-                document.getElementById('result').innerText = 'Errore: Inserisci un\'operazione valida';
-            }
-        }
+            let result;
+            if (input.includes('/') && input.split('/').pop() === '0') 
+            {result = 'Errore: Inserisci un\'operazione valida';}
+            else {try {result = eval(input);} 
+                catch {result = 'Errore: Inserisci un\'operazione valida';}}
+            document.getElementById('result').innerText = 'Risultato: ' + result;}
     </script>
 </body>
 </html>
