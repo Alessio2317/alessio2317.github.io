@@ -1,112 +1,68 @@
 <!DOCTYPE html>
-<html lang="it">
-<head>
+<html lang="it"><head>
     <meta charset="UTF-8">
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        
+        body {font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0;
-            padding: 20px;
-        }
-
-        input {
-            width: 100px;
-            height: 30px;
-            margin: 10px;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .row {
-            display: flex;
-            justify-content: center;
-            margin: 10px 0;
-        }
-
-        .operazoni {
-            margin: 0 10px;
-        }
-
-        button {
-            width: 40px;
-            height: 40px;
-            font-size: 18px;
-        }
-
-        #result {
-            margin-top: 20px;
-            font-size: 20px;
-        }
+            margin: 0;}
+        
+        .row {display: flex;
+            justify-content: space-between;
+            width: 20px;}
+        
+        .operazoni{height:30px;
+             width:30px;
+             align:center;
+             margin: 10px 10px 10px 10px;}
+     
+        
     </style>
+
 </head>
 
-<body>
-    <input type="text" id="numero" placeholder="Inserisci un numero">
-    
+    <body>
+       
+    <input type="text" id="operatore1" placeholder="numero1">
+    <input type="text" id="operatore2" placeholder="numero2">
+      
     <div class="row">
-        <div class='operazoni'><button onclick="setOperation('+')">+</button></div>
-        <div class='operazoni'><button onclick="setOperation('-')">-</button></div>
-        <div class='operazoni'><button onclick="setOperation('/')">/</button></div>
-        <div class='operazoni'><button onclick="setOperation('*')">*</button></div>
-        <div class='operazoni'><button onclick="calculate()">=</button></div>
+        
+        <div class='operazoni'><button onclick="calculate('+')">+</button></div>
+        <div class='operazoni'><button onclick="calculate('-')">-</button></div>
+       <div class='operazoni'><button onclick="calculate('/')">/</button></div>
+       <div class='operazoni'><button onclick="calculate('*')">*</button></div>
     </div>
+        <h3 id="result">risultato operazione: </h3>
+<script>
     
-    <h3 id="result">Risultato operazione: </h3>
-    
-    <script>
-        let firstNumber = null;
-        let operation = null;
+    function calculate(operator) {
+        const operatore1 = parseFloat(document.getElementById('operatore1').value);
+        const operatore2 = parseFloat(document.getElementById('operatore2').value);
+        let result;
 
-        function setOperation(op) {
-            const inputField = document.getElementById('numero');
-            firstNumber = parseFloat(inputField.value);
+        if (isNaN(operatore1) || isNaN(operatore2)) {
+            document.getElementById('result').innerText = 'Errore: Inserisci due numeri validi';
+            return;}
 
-            if (isNaN(firstNumber)) {
-                document.getElementById('result').innerText = 'Errore: Inserisci un numero valido';
-                return;
-            }
-
-            operation = op;
-            inputField.value = ''; // Cancella il campo per il secondo numero
-        }
-
-        function calculate() {
-            const inputField = document.getElementById('numero');
-            const secondNumber = parseFloat(inputField.value);
-
-            if (isNaN(secondNumber) || operation === null) {
-                document.getElementById('result').innerText = 'Errore: Inserisci il secondo numero e un\'operazione valida';
-                return;
-            }
-
-            let result;
-
-            switch (operation) {
-                case '+':
-                    result = firstNumber + secondNumber;
-                    break;
-                case '-':
-                    result = firstNumber - secondNumber;
-                    break;
-                case '*':
-                    result = firstNumber * secondNumber;
-                    break;
-                case '/':
-                    result = secondNumber !== 0 ? firstNumber / secondNumber : 'Errore: Divisione per zero non è permessa';
-                    break;
-                default:
-                    result = 'Operazione non valida';
-            }
-            document.getElementById('result').innerText = 'Risultato operazione: ' + result;
-
-            // Resetta le variabili per il prossimo calcolo
-            firstNumber = null;
-            operation = null;
-            inputField.value = ''; // Pulisci il campo input
-        }
-    </script>
+        switch (operator) {
+            case '+':
+                result = operatore1 + operatore2;
+                break;
+            case '-':
+                result = operatore1 - operatore2;
+                break;
+            case '*':
+                result = operatore1 * operatore2;
+                break;
+            case '/':
+                result = operatore2 !== 0 ? operatore1 / operatore2 : 'errore un numero è uguale a 0 e l operazione non è fattibile';
+                break;}
+        document.getElementById('result').innerText='risultato operazione:'+result;}
+   
+</script>
 </body>
 </html>
