@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body {
+        body{
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
@@ -11,27 +11,23 @@
             margin: 0;
             padding: 20px;}
 
-        input {
-            width: 150px;
+        input{width: 150px;
             height: 30px;
             margin: 10px;
             font-size: 16px;
             text-align: center;}
 
-        .row {display: flex;
+        .linea{display: flex;
             justify-content: center;
             margin: 10px 0;}
 
-        .operazoni {
-            margin: 0 10px;}
+        .operazoni{margin: 0 10px;}
 
-        button {
-            width: 40px;
+        bottone {width: 40px;
             height: 40px;
             font-size: 18px;}
 
-        #result {
-            margin-top: 20px;
+        #risultato{margin-top: 20px;
             font-size: 20px;}
 
         
@@ -41,15 +37,14 @@
 <body>
     <input type="text" id="numero" placeholder="Inserisci un numero">
     
-    <div class="row">
-        <div class='operazoni'><button onclick="setOperation('+')">+</button></div>
-        <div class='operazoni'><button onclick="setOperation('-')">-</button></div>
-        <div class='operazoni'><button onclick="setOperation('/')">/</button></div>
-        <div class='operazoni'><button onclick="setOperation('*')">*</button></div>
-        <div class='operazoni'><button onclick="calculate()">=</button></div>
+    <div class="linea">
+        <div class='operazoni'><bottone onclick="setOperation('+')">+</bottone></div>
+        <div class='operazoni'><bottone onclick="setOperation('-')">-</bottone></div>
+        <div class='operazoni'><bottone onclick="setOperation('/')">/</bottone></div>
+        <div class='operazoni'><bottone onclick="setOperation('*')">*</bottone></div>
+        <div class='operazoni'><bottone onclick="calculate()">=</bottone></div>
     </div>
-    
-    <h3 id="result">Risultato operazione: </h3>
+    <h3 id="risultato">Risultato operazione: </h3>
     
     <script>
         let num1 = null;
@@ -61,12 +56,10 @@
 
             if (isNaN(num1)) {
                 document.getElementById('result').innerText = 'Errore: Inserisci un numero valido';
-                return;
-            }
+                return;}
 
             operazione = op;
-            inputField.value = '';
-        }
+            inputField.value = '';}
 
         function calculate() {
             const inputField = document.getElementById('numero');
@@ -74,8 +67,7 @@
 
             if (isNaN(num2) || operazione === null) {
                 document.getElementById('result').innerText = 'Errore: Inserisci il secondo numero e un\'operazione valida';
-                return;
-            }
+                return;}
 
             let result;
 
@@ -93,15 +85,12 @@
                     result = num2 !== 0 ? num1 / num2 : 'Errore: Divisione per zero non è permessa';
                     break;
                 default:
-                    result = 'Operazione non valida';
-            }
+                    result = 'Operazione non valida';}
+            
             document.getElementById('result').innerText = 'Risultato operazione: ' + result;
-
-           
             num1 = null;
             operazione = null;
-            inputField.value = ''; 
-        }
+            inputField.value = ''; }
     </script>
 </body>
 </html>
