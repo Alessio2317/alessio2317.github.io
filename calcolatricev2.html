@@ -4,25 +4,17 @@
     <link rel="icon" type="image/x-icon" href="rondo.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calcolatrice2</title>
+   
     <style>
-         body {
-            font-family: Arial, sans-serif;
+         body {font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #ccc;
-        }
+            height: 100vh;}
 
-        .calcolatrice {
-            background-color:  rgb(0, 0, 0);
-            color:aliceblue;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgb(0, 0, 0);
+       
            
-        }
+        
 
         input {
             background-color:  rgb(0, 0, 0);
@@ -31,8 +23,7 @@
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+            border-radius: 5px;}
 
         .buttons {
             display: flex;
@@ -57,7 +48,7 @@
     </style>
 </head>
 <body>
-    <div class="calcolatrice">
+
         <input type="text" id="input" placeholder=" " />
         <div class="buttons">
             <button onclick="setOperation('+')">+</button>
@@ -67,8 +58,7 @@
             <button onclick="setOperation('=')">=</button>
         </div>
         <input type="text" id="output" placeholder=" " readonly />
-    </div>
-
+   
     <script>
         let primo = null;
         let b = null;
