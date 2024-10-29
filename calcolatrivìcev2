@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcolatrice Semplice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        input[type="text"] {
+            width: 200px;
+            height: 40px;
+            font-size: 20px;
+            text-align: right;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+        .operazoni {
+            height: 50px;
+            width: 50px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="input" placeholder="Inserisci operazione">
+    <div class="row">
+        <div class='operazoni'><button onclick="appendToInput('+')">+</button></div>
+        <div class='operazoni'><button onclick="appendToInput('-')">-</button></div>
+        <div class='operazoni'><button onclick="appendToInput('/')">/</button></div>
+        <div class='operazoni'><button onclick="appendToInput('*')">*</button></div>
+    </div>
+    <div class="row">
+        <div class='operazoni'><button onclick="calculate()">=</button></div>
+        <div class='operazoni'><button onclick="clearInput()">C</button></div>
+    </div>
+    <h3 id="result">Risultato: </h3>
+
+    <script>
+        function appendToInput(value) {
+            document.getElementById('input').value += value;
+        }
+
+        function clearInput() {
+            document.getElementById('input').value = '';
+            document.getElementById('result').innerText = 'Risultato: ';
+        }
+
+        function calculate() {
+            const input = document.getElementById('input').value;
+            try {
+                const result = eval(input);
+                document.getElementById('result').innerText = 'Risultato: ' + result;
+            } catch (error) {
+                document.getElementById('result').innerText = 'Errore: Inserisci un\'operazione valida';
+            }
+        }
+    </script>
+</body>
+</html>
