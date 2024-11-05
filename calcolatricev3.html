@@ -3,47 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body {font-family: Arial;
             display: flex;
             flex-direction: column;
             align-items: center;
             margin: 0;
-            padding: 20px;
-        }
+            padding: 20px;}
 
-        input {
-            width: 150px;
+        input{width: 150px;
             height: 30px;
             margin: 10px;
             font-size: 16px;
-            text-align: center;
-        }
+            text-align: center;}
 
-        .linea {
-            display: flex;
+        .linea {display: flex;
             justify-content: center;
-            margin: 10px 0;
-        }
+            margin: 10px 0;}
 
-        .operazoni {
-            margin: 0 10px;
-        }
+        .operazoni {margin: 0 10px;}
 
-        button {
-            width: 40px;
+        button {width: 40px;
             height: 40px;
-            font-size: 18px;
-        }
+            font-size: 18px;}
 
-        #risultato {
-            margin-top: 20px;
-            font-size: 20px;
-        }
+        #risultato {margin-top: 20px;
+            font-size: 20px;}
+        
     </style>
 </head>
 
 <body>
+    
     <input type="text" id="numero" placeholder="Inserisci un numero" readonly>
 
     <div class="linea">
@@ -71,7 +61,7 @@
         <div class='operazoni'><button onclick="setOperation('/')">/</button></div>
     </div>
     
-    <h3 id="risultato">Risultato operazione: </h3>
+   
 
     <script>
         let num1 = null;
@@ -81,10 +71,8 @@
 
         function appendToInput(value) {
             if (inputField.value === "Errore") {
-                inputField.value = '';
-            }
-            inputField.value += value;
-        }
+                inputField.value = '';}
+            inputField.value += value;}
 
     
         function setOperation(op) {
@@ -92,22 +80,17 @@
             num1 = parseFloat(inputField.value);
             if (isNaN(num1)) {
                 inputField.value = 'Errore';
-                return;
-            }
+                return;}
             operazione = op;
-            inputField.value = '';
-        }
+            inputField.value = '';}
 
       
         function calculate() {
             const num2 = parseFloat(inputField.value);
             if (isNaN(num2) || operazione === null) {
                 inputField.value = 'Errore';
-                return;
-            }
-
+                return;}
             let result;
-
             switch (operazione) {
                 case '+':
                     result = num1 + num2;
@@ -123,20 +106,17 @@
                     break;
                 default:
                     result = 'Errore';
-                    break;
-            }
+                    break;}
 
             inputField.value = result;
             num1 = null;
-            operazione = null;
-        }
+            operazione = null;}
 
       
         function clearInput() {
             inputField.value = '';
             num1 = null;
-            operazione = null;
-        }
+            operazione = null;}
     </script>
 </body>
 </html>
