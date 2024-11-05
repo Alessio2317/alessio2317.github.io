@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
 
+        input {
+            width: 150px;
+            height: 30px;
+            margin: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .linea {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .operazoni {
+            margin: 0 10px;
+        }
+
+        button {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+        }
+
+        #risultato {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="numero" placeholder="Inserisci un numero" readonly>
+
+    <div class="linea">
+        <div class='operazoni'><button onclick="appendToInput('1')">1</button></div>
+        <div class='operazoni'><button onclick="appendToInput('2')">2</button></div>
+        <div class='operazoni'><button onclick="appendToInput('3')">3</button></div>
+        <div class='operazoni'><button onclick="setOperation('+')">+</button></div>
+    </div>
+    <div class="linea">
+        <div class='operazoni'><button onclick="appendToInput('4')">4</button></div>
+        <div class='operazoni'><button onclick="appendToInput('5')">5</button></div>
+        <div class='operazoni'><button onclick="appendToInput('6')">6</button></div>
+        <div class='operazoni'><button onclick="setOperation('-')">-</button></div>
+    </div>
+    <div class="linea">
+        <div class='operazoni'><button onclick="appendToInput('7')">7</button></div>
+        <div class='operazoni'><button onclick="appendToInput('8')">8</button></div>
+        <div class='operazoni'><button onclick="appendToInput('9')">9</button></div>
+        <div class='operazoni'><button onclick="setOperation('*')">*</button></div>
+    </div>
+    <div class="linea">
+        <div class='operazoni'><button onclick="appendToInput('0')">0</button></div>
+        <div class='operazoni'><button onclick="clearInput()">C</button></div>
+        <div class='operazoni'><button onclick="calculate()">=</button></div>
+        <div class='operazoni'><button onclick="setOperation('/')">/</button></div>
+    </div>
+    
+    <h3 id="risultato">Risultato operazione: </h3>
+
+    <script>
+        let num1 = null;
+        let operazione = null;
+        const inputField = document.getElementById('numero');
+
+
+        function appendToInput(value) {
+            if (inputField.value === "Errore") {
+                inputField.value = '';
+            }
+            inputField.value += value;
+        }
+
+    
+        function setOperation(op) {
+            if (inputField.value === '') return;
+            num1 = parseFloat(inputField.value);
+            if (isNaN(num1)) {
+                inputField.value = 'Errore';
+                return;
+            }
+            operazione = op;
+            inputField.value = '';
+        }
+
+      
+        function calculate() {
+            const num2 = parseFloat(inputField.value);
+            if (isNaN(num2) || operazione === null) {
+                inputField.value = 'Errore';
+                return;
+            }
+
+            let result;
+
+            switch (operazione) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num2 !== 0 ? num1 / num2 : 'Errore: Divisione per zero';
+                    break;
+                default:
+                    result = 'Errore';
+                    break;
+            }
+
+            inputField.value = result;
+            num1 = null;
+            operazione = null;
+        }
+
+      
+        function clearInput() {
+            inputField.value = '';
+            num1 = null;
+            operazione = null;
+        }
+    </script>
+</body>
+</html>
