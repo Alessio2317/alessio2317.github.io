@@ -79,14 +79,13 @@
 
     <button onclick="aggiungiDati()">OK</button>
 
+    <!-- Tabella per visualizzare i dati inseriti -->
     <table id="tabellaDati">
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Cognome</th>
                 <th>Indirizzo</th>
-            </tr>
-            <tr>
                 <th>Città</th>
                 <th>Email</th>
                 <th>Codice Fiscale</th>
@@ -113,20 +112,14 @@
                 // Aggiungi i dati alla matrice
                 matriceDati.push([nome, cognome, indirizzo, citta, email, codiceFiscale]);
 
-                // Aggiungi due righe alla tabella
+                // Aggiungi una riga alla tabella
                 const tableBody = document.getElementById('tabellaDati').getElementsByTagName('tbody')[0];
+                const newRow = tableBody.insertRow();
 
-                // Prima riga (Nome, Cognome, Indirizzo)
-                const row1 = tableBody.insertRow();
-                row1.insertCell(0).textContent = nome;
-                row1.insertCell(1).textContent = cognome;
-                row1.insertCell(2).textContent = indirizzo;
-
-                // Seconda riga (Città, Email, Codice Fiscale)
-                const row2 = tableBody.insertRow();
-                row2.insertCell(0).textContent = citta;
-                row2.insertCell(1).textContent = email;
-                row2.insertCell(2).textContent = codiceFiscale;
+                matriceDati[matriceDati.length - 1].forEach((dato, index) => {
+                    const cell = newRow.insertCell(index);
+                    cell.textContent = dato;
+                });
 
                 // Svuota i campi di input dopo l'inserimento
                 document.getElementById('nome').value = '';
@@ -136,6 +129,10 @@
                 document.getElementById('email').value = '';
                 document.getElementById('codiceFiscale').value = '';
             } else {
-                alert("Tutti i campi devono essere comp
+                alert("Tutti i campi devono essere compilati!");
+            }
+        }
+    </script>
 
-
+</body>
+</html>
