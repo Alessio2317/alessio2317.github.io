@@ -3,59 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body {
-            font-family: Arial;
+        body { font-family: Arial;
             display: flex;
             flex-direction: column;
             align-items: center;
             margin: 0;
-            padding: 20px;
-        }
+            padding: 20px;}
 
-        input {
-            width: 200px;
+        input {width: 200px;
             height: 30px;
             margin: 10px;
             font-size: 16px;
-            text-align: center;
-        }
+            text-align: center;}
 
-        .linea {
-            display: flex;
+        .linea {display: flex;
             justify-content: center;
-            margin: 10px 0;
-        }
+            margin: 10px 0;}
 
-        .operazoni {
-            margin: 0 10px;
-        }
+        .operazoni {margin: 0 10px;}
 
-        button {
-            width: 80px;
+        button {width: 80px;
             height: 40px;
             font-size: 16px;
-            cursor: pointer;
-        }
+            cursor: pointer;}
 
-        #risultato {
-            margin-top: 20px;
-            font-size: 18px;
-        }
+        #risultato { margin-top: 20px;
+            font-size: 18px;}
 
-        table {
-            margin-top: 30px;
+        table {margin-top: 30px;
             border-collapse: collapse;
-            width: 100%;
-        }
+            width: 100%;}
 
-        table, th, td {
-            border: 1px solid black;
-        }
+        table, th, td { border: 1px solid black;}
 
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
+        th, td {padding: 10px;
+            text-align: center;}
 
     </style>
 </head>
@@ -64,7 +46,7 @@
 
     <h1>Inserisci Dati Anagrafici</h1>
 
-    <!-- Righe separate per i campi di input -->
+   
     <div class="linea">
         <input type="text" id="nome" placeholder="Nome">
         <input type="text" id="cognome" placeholder="Cognome">
@@ -79,7 +61,7 @@
 
     <button onclick="aggiungiDati()">OK</button>
 
-    <!-- Tabella per visualizzare i dati inseriti -->
+    
     <table id="tabellaDati">
         <thead>
             <tr>
@@ -92,7 +74,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Le righe dei dati saranno aggiunte qui -->
+          
         </tbody>
     </table>
 
@@ -107,12 +89,12 @@
             const email = document.getElementById('email').value;
             const codiceFiscale = document.getElementById('codiceFiscale').value;
 
-            // Verifica che tutti i campi siano compilati
+         
             if (nome && cognome && indirizzo && citta && email && codiceFiscale) {
-                // Aggiungi i dati alla matrice
+              
                 matriceDati.push([nome, cognome, indirizzo, citta, email, codiceFiscale]);
 
-                // Aggiungi una riga alla tabella
+              
                 const tableBody = document.getElementById('tabellaDati').getElementsByTagName('tbody')[0];
                 const newRow = tableBody.insertRow();
 
@@ -121,15 +103,14 @@
                     cell.textContent = dato;
                 });
 
-                // Svuota i campi di input dopo l'inserimento
+              
                 document.getElementById('nome').value = '';
                 document.getElementById('cognome').value = '';
                 document.getElementById('indirizzo').value = '';
                 document.getElementById('citta').value = '';
                 document.getElementById('email').value = '';
                 document.getElementById('codiceFiscale').value = '';
-            } else {
-                alert("Tutti i campi devono essere compilati!");
+            } else {alert("Tutti i campi devono essere compilati!");
             }
         }
     </script>
