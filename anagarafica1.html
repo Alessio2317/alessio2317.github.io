@@ -3,41 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { font-family: Arial;
+        body { 
+            font-family: Arial;
             display: flex;
             flex-direction: column;
             align-items: center;
             margin: 0;
-            padding: 20px;}
+            padding: 20px;
+        }
 
-        input {width: 200px;
+        input {
+            width: 200px;
             height: 30px;
             margin: 10px;
             font-size: 16px;
-            text-align: center;}
+            text-align: center;
+        }
 
-        .linea {display: flex;
+        .linea {
+            display: flex;
             justify-content: center;
-            margin: 10px 0;}
+            margin: 10px 0;
+        }
 
-        .operazoni {margin: 0 10px;}
+        .operazoni {
+            margin: 0 10px;
+        }
 
-        button {width: 80px;
+        button {
+            width: 80px;
             height: 40px;
             font-size: 16px;
-            cursor: pointer;}
+            cursor: pointer;
+        }
 
-        #risultato { margin-top: 20px;
-            font-size: 18px;}
+        #risultato {
+            margin-top: 20px;
+            font-size: 18px;
+        }
 
-        table {margin-top: 30px;
+        table {
+            margin-top: 30px;
             border-collapse: collapse;
-            width: 100%;}
+            width: 100%;
+        }
 
-        table, th, td { border: 1px solid black;}
+        table, th, td {
+            border: 1px solid black;
+        }
 
-        th, td {padding: 10px;
-            text-align: center;}
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        #errore {
+            color: red;
+            font-size: 16px;
+            margin-top: 10px;
+        }
 
     </style>
 </head>
@@ -46,7 +70,6 @@
 
     <h1>dati anagrafici</h1>
 
-   
     <div class="linea">
         <input type="text" id="nome" placeholder="Nome">
         <input type="text" id="cognome" placeholder="Cognome">
@@ -61,7 +84,9 @@
 
     <button onclick="aggiungiDati()">OK</button>
 
-    
+    <!-- Messaggio di errore -->
+    <div id="errore"></div>
+
     <table id="tabellaDati">
         <thead>
             <tr>
@@ -74,12 +99,13 @@
             </tr>
         </thead>
         <tbody>
-          </tbody>
+        </tbody>
     </table>
-        <script>
-            
+
+    <script>
         let matriceDati = [];
-            function aggiungiDati() {
+
+        function aggiungiDati() {
             const nome = document.getElementById('nome').value;
             const cognome = document.getElementById('cognome').value;
             const indirizzo = document.getElementById('indirizzo').value;
@@ -87,12 +113,12 @@
             const email = document.getElementById('email').value;
             const codiceFiscale = document.getElementById('codiceFiscale').value;
 
-         
+            // Controlla se tutti i campi sono compilati
             if (nome && cognome && indirizzo && citta && email && codiceFiscale) {
-              
+                // Aggiungi i dati alla matrice
                 matriceDati.push([nome, cognome, indirizzo, citta, email, codiceFiscale]);
 
-              
+                // Aggiungi una riga alla tabella
                 const tableBody = document.getElementById('tabellaDati').getElementsByTagName('tbody')[0];
                 const newRow = tableBody.insertRow();
 
@@ -101,14 +127,19 @@
                     cell.textContent = dato;
                 });
 
-              
+                // Pulisci i campi di input
                 document.getElementById('nome').value = '';
                 document.getElementById('cognome').value = '';
                 document.getElementById('indirizzo').value = '';
                 document.getElementById('citta').value = '';
                 document.getElementById('email').value = '';
                 document.getElementById('codiceFiscale').value = '';
-            } else {alert("Tutti i campi devono essere compilati!");
+
+                // Rimuovi il messaggio di errore (se esiste)
+                document.getElementById('errore').textContent = '';
+            } else {
+                // Mostra il messaggio di errore
+                document.getElementById('errore').textContent = 'Errore: non sono stati inseriti tutti i campi.';
             }
         }
     </script>
