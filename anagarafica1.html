@@ -64,12 +64,18 @@
 
     <h1>Inserisci Dati Anagrafici</h1>
 
-    <input type="text" id="nome" placeholder="Nome">
-    <input type="text" id="cognome" placeholder="Cognome">
-    <input type="text" id="indirizzo" placeholder="Indirizzo">
-    <input type="text" id="citta" placeholder="Città">
-    <input type="text" id="email" placeholder="Email">
-    <input type="text" id="codiceFiscale" placeholder="Codice Fiscale">
+    <!-- Righe separate per i campi di input -->
+    <div class="linea">
+        <input type="text" id="nome" placeholder="Nome">
+        <input type="text" id="cognome" placeholder="Cognome">
+        <input type="text" id="indirizzo" placeholder="Indirizzo">
+    </div>
+
+    <div class="linea">
+        <input type="text" id="citta" placeholder="Città">
+        <input type="text" id="email" placeholder="Email">
+        <input type="text" id="codiceFiscale" placeholder="Codice Fiscale">
+    </div>
 
     <button onclick="aggiungiDati()">OK</button>
 
@@ -79,6 +85,8 @@
                 <th>Nome</th>
                 <th>Cognome</th>
                 <th>Indirizzo</th>
+            </tr>
+            <tr>
                 <th>Città</th>
                 <th>Email</th>
                 <th>Codice Fiscale</th>
@@ -105,14 +113,20 @@
                 // Aggiungi i dati alla matrice
                 matriceDati.push([nome, cognome, indirizzo, citta, email, codiceFiscale]);
 
-                // Aggiungi una riga alla tabella
+                // Aggiungi due righe alla tabella
                 const tableBody = document.getElementById('tabellaDati').getElementsByTagName('tbody')[0];
-                const newRow = tableBody.insertRow();
 
-                matriceDati[matriceDati.length - 1].forEach((dato, index) => {
-                    const cell = newRow.insertCell(index);
-                    cell.textContent = dato;
-                });
+                // Prima riga (Nome, Cognome, Indirizzo)
+                const row1 = tableBody.insertRow();
+                row1.insertCell(0).textContent = nome;
+                row1.insertCell(1).textContent = cognome;
+                row1.insertCell(2).textContent = indirizzo;
+
+                // Seconda riga (Città, Email, Codice Fiscale)
+                const row2 = tableBody.insertRow();
+                row2.insertCell(0).textContent = citta;
+                row2.insertCell(1).textContent = email;
+                row2.insertCell(2).textContent = codiceFiscale;
 
                 // Svuota i campi di input dopo l'inserimento
                 document.getElementById('nome').value = '';
@@ -122,11 +136,6 @@
                 document.getElementById('email').value = '';
                 document.getElementById('codiceFiscale').value = '';
             } else {
-                alert("Tutti i campi devono essere compilati!");
-            }
-        }
-    </script>
+                alert("Tutti i campi devono essere comp
 
-</body>
-</html>
 
