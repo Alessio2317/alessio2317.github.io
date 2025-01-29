@@ -71,7 +71,7 @@
 
                
                 for (let i = 1; i < rows.length; i++) {
-                    if (rows[i].trim() === "") continue; // Ignora righe vuote
+                    if (rows[i].trim() === "") continue; 
                     const cells = rows[i].split(",");
                     const row = document.createElement('tr');
                     cells.forEach(cell => {
@@ -101,7 +101,7 @@
                     },
                     options: {
                         tooltips: {
-                            enabled: false // Disabilita i tooltip
+                            enabled: false
                         },
                         scales: {
                             y: {
