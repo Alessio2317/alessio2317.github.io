@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {font-family: Arial;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;}
+
+        input {width: 200px;
+            height: 30px;
+            margin: 10px;
+            font-size: 16px;
+            text-align: center;}
+
+        .linea {display: flex;
+            justify-content: center;
+            margin: 10px 0;}
+
+        .operazoni {margin: 0 10px;}
+
+        button {width: 80px;
+            height: 40px;
+            font-size: 16px;
+            cursor: pointer;}
+
+        #risultato {margin-top: 20px;
+            font-size: 18px;}
+
+        table {margin-top: 30px;
+            border-collapse: collapse;
+            width: 100%;}
+
+        table, th, td {border: 1px solid black;}
+
+        th, td {padding: 10px;
+            text-align: center;}
+
+        #errore {color: red;
+            font-size: 16px;
+            margin-top: 10px;}
+
+    </style>
+</head>
+
+<body>
+
+    <h1>dati anagrafici</h1>
+
+    <div class="linea">
+        <input type="text" id="nome" placeholder="Nome">
+        <input type="text" id="cognome" placeholder="Cognome">
+        <input type="text" id="indirizzo" placeholder="Indirizzo">
+    </div>
+
+    <div class="linea">
+        <input type="text" id="citta" placeholder="Città">
+        <input type="text" id="email" placeholder="Email">
+        <input type="text" id="codiceFiscale" placeholder="Codice Fiscale">
+    </div>
+
+    <button onclick="aggiungiDati()">OK</button>
+
+    <div id="errore"></div>
+
+    <table id="tabellaDati">
+        <thead>
+            <tr>
+                <th>nome</th>
+                <th>cognome</th>
+                <th>indirizzo</th>
+                <th>città</th>
+                <th>email</th>
+                <th>codice fiscale</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        let matriceDati = [];
+
+        function validaNome(nome) {
+            const regex = /^[A-Za-zÀ-ÿ\s]+$/; // Solo lettere e spazi
+            return regex.test(nome);
+        }
+
+        function validaEmail(email) {
+            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Formato email
+            return regex.test(email);
+        }
+
+        function validaCodiceFiscale(codiceFiscale) {
+            const regex = /^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$/; // Formato codice fiscale italiano
+            return regex.test(codiceFiscale);
+        }
+
+        function aggiungiDati() {
+            const nome = document.getElementById('nome').value;
+            const cognome = document.getElementById('cognome').value;
+            const indirizzo = document.getElementById('indirizzo').value;
+            const citta = document.getElementById('citta').value;
+            const email = document.getElementById('email').value;
+            const codiceFiscale = document.getElementById('codiceFiscale').value;
+
+            if (nome && cognome && indirizzo && citta && email && codiceFiscale) {
+                if (!validaNome(nome)) {
+                    document.getElementById('errore').textContent = 'Errore: Nome non valido.';
+                    return;
+                }
+                if (!validaNome(cognome)) {
+                    document.getElementById('errore').textContent = 'Errore: Cognome non valido.';
+                    return;
+                }
+                if (!validaEmail(email)) {
+                    document.getElementById('errore').textContent = 'Errore: Email non valida.';
+                    return;
+                }
+                if (!validaCodiceFiscale(codiceFiscale)) {
+                    document.getElementById('errore').textContent = 'Errore: Codice fiscale non valido.';
+                    return;
+                }
+
+                matriceDati.push([nome, cognome, indirizzo, citta, email, codiceFiscale]);
+
+                const tableBody = document.getElementById('tabellaDati').getElementsByTagName('tbody')[0];
+                const newRow = tableBody.insertRow();
+
+                matriceDati[matriceDati.length - 1].forEach((dato, index) => {
+                    const cell = newRow.insertCell(index);
+                    cell.textContent = dato;
+                });
+
+                document.getElementById('nome').value = '';
+                document.getElementById('cognome').value = '';
+                document.getElementById('indirizzo').value = '';
+                document.getElementById('citta').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('codiceFiscale').value = '';
+
+                document.getElementById('errore').textContent = '';
+                
+            } else {
+                document.getElementById('errore').textContent = 'Errore: non sono stati inseriti tutti i campi, continua ad aggiungerli per procedere ad inserire la persona.';
+            }
+        }
+    </script>
+
+</body>
+</html>
