@@ -5,35 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizza CSV in Tabella e Grafico</title>
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        canvas {
-            margin-top: 20px;
-            max-width: 100%;
-        }
+        table {width: 100%;
+               border-collapse: collapse;}
+        
+        th, td {border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;}
+        
+        th {background-color: #f2f2f2;}
+        
+        canvas {margin-top: 20px;
+                max-width: 100%;}
     </style>
-    <!-- Inclusione della libreria Chart.js -->
+ 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h1>Carica e Visualizza il CSV</h1>
     <input type="file" id="csvFile" accept=".csv" />
     <br><br>
-
-    <!-- Tabella per visualizzare i dati CSV -->
     <table id="csvTable"></table>
-
-    <!-- Canvas per il grafico -->
+  
     <canvas id="csvChart"></canvas>
 
     <script>
@@ -43,8 +35,7 @@
             const file = event.target.files[0];
             if (!file) {
                 alert("Nessun file selezionato.");
-                return;
-            }
+                return;}
 
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -79,41 +70,28 @@
                         td.textContent = cell.trim();
                         row.appendChild(td);
                     });
-                    table.appendChild(row);
-
-                   
+                    table.appendChild(row);  
                     chartLabels.push(cells[0]);
-                    chartData.push(parseFloat(cells[1])); 
-                }
+                    chartData.push(parseFloat(cells[1])); }
 
-             
                 new Chart(chartCanvas, {
                     type: 'bar',
-                    data: {
-                        labels: chartLabels,
-                        datasets: [{
+                    data: {labels: chartLabels,
+                            datasets: [{
                             label: 'Valori dal CSV',
                             data: chartData,
                             backgroundColor: 'rgba(54, 162, 235, 0.2)',
                             borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
-                        }]
+                            borderWidth: 1}]
                     },
                     options: {
-                        tooltips: {
-                            enabled: false
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
+                        tooltips: {enabled: false},
+                        scales: {y: {beginAtZero: true}
                         }
                     }
                 });
             };
-
-            reader.readAsText(file);
-        }
+            reader.readAsText(file);}
     </script>
 </body>
 </html>
