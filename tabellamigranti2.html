@@ -37,6 +37,9 @@
                 alert("Nessun file selezionato.");
                 return;}
 
+
+
+            
             const reader = new FileReader();
             reader.onload = function(e) {
                 const text = e.target.result;
@@ -45,6 +48,9 @@
                 const chartCanvas = document.getElementById('csvChart').getContext('2d');
                 table.innerHTML = "";
 
+
+
+                
              
                 const headers = rows[0].split(",");
                 const headerRow = document.createElement('tr');
@@ -55,12 +61,13 @@
                 });
                 table.appendChild(headerRow);
 
+
+
+                
               
                 const chartLabels = [];
                 const chartData = [];
                 const rowsData = [];
-
-               
                 for (let i = 1; i < rows.length; i++) {
                     if (rows[i].trim() === "") continue; 
                     const cells = rows[i].split(",");
@@ -74,6 +81,10 @@
                     chartLabels.push(cells[0]);
                     chartData.push(parseFloat(cells[1])); }
 
+
+
+
+                
                 new Chart(chartCanvas, {
                     type: 'line',
                     data: {labels: chartLabels,
@@ -88,7 +99,7 @@
 
 
 
-                        
+                         plugins: {
                            tooltip: {
                                 enabled: false // Disabilita il popup del tooltip
                             }
