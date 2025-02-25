@@ -96,24 +96,9 @@
                             borderWidth: 1}]
                     },
                     options: {
-
-
-
-                         plugins: {
-                           tooltip: {
-                                enabled: false // Disabilita il popup del tooltip
-                            }
-                        },
-
-
-
-
-
-
-                    
-                        scales: {y: {beginAtZero: true}
-                        }
-                    }
+                        plugins: {
+                           tooltip: { enabled: false }},
+                    scales: {y: {beginAtZero: true}}}
                 });
             };
             reader.readAsText(file);}
