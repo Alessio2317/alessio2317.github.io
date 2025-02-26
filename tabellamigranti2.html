@@ -25,83 +25,86 @@
     <input type="file" id="csvFile" accept=".csv" />
     <br><br>
     <table id="csvTable"></table>
-  
+    
     <canvas id="csvChart"></canvas>
 
     <script>
-        document.getElementById('csvFile').addEventListener('change', handleFileSelect, false);
+        document.getElementById('csvFile').addEventListener('change', gestisciSelezioneFile, false);
 
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
+        function gestisciSelezioneFile(evento) {
+            const file = evento.target.files[0];
             if (!file) {
                 alert("Nessun file selezionato.");
                 return;}
 
 
-
             
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const text = e.target.result;
-                const rows = text.split("\n");
-                const table = document.getElementById('csvTable');
-                const chartCanvas = document.getElementById('csvChart').getContext('2d');
-                table.innerHTML = "";
+            const lettore = new FileReader();
+            lettore.onload = function(e) {
+                const testo = e.target.result;
+                const righe = testo.split("\n");
+                const tabella = document.getElementById('csvTable');
+                const canvasGrafico = document.getElementById('csvChart').getContext('2d');
+                tabella.innerHTML = "";
 
-
-
-                
-             
-                const headers = rows[0].split(",");
-                const headerRow = document.createElement('tr');
-                headers.forEach(header => {
+                const intestazioni = righe[0].split(",");
+                const rigaIntestazione = document.createElement('tr');
+                intestazioni.forEach(intestazione => {
                     const th = document.createElement('th');
-                    th.textContent = header;
-                    headerRow.appendChild(th);
+                    th.textContent = intestazione;
+                    rigaIntestazione.appendChild(th);
                 });
-                table.appendChild(headerRow);
+                tabella.appendChild(rigaIntestazione);
+
+
 
 
 
                 
-              
-                const chartLabels = [];
-                const chartData = [];
-                const rowsData = [];
-                for (let i = 1; i < rows.length; i++) {
-                    if (rows[i].trim() === "") continue; 
-                    const cells = rows[i].split(",");
-                    const row = document.createElement('tr');
-                    cells.forEach(cell => {
+                const etichetteGrafico = [];
+                const datiGrafico = [];
+                const righeDati = [];
+                for (let i = 1; i < righe.length; i++) {
+                    if (righe[i].trim() === "") continue; 
+                    const celle = righe[i].split(",");
+                    const riga = document.createElement('tr');
+                    celle.forEach(cella => {
                         const td = document.createElement('td');
-                        td.textContent = cell.trim();
-                        row.appendChild(td);
+                        td.textContent = cella.trim();
+                        riga.appendChild(td);
                     });
-                    table.appendChild(row);  
-                    chartLabels.push(cells[0]);
-                    chartData.push(parseFloat(cells[1])); }
+                    tabella.appendChild(riga);  
+                    etichetteGrafico.push(celle[0]);
+                    datiGrafico.push(parseFloat(celle[1]));}
 
 
 
 
                 
-                new Chart(chartCanvas, {
+                new Chart(canvasGrafico, {
                     type: 'line',
-                    data: {labels: chartLabels,
-                            datasets: [{
+                    data: {
+                        labels: etichetteGrafico,
+                        datasets: [{
                             label: 'Valori dal CSV',
-                            data: chartData,
+                            data: datiGrafico,
                             backgroundColor: 'rgba(255, 99, 132, 0.2)',
                             borderColor: 'rgba(255, 99, 132, 5)',
-                            borderWidth: 1}]
+                            borderWidth: 1
+                        }]
                     },
                     options: {
                         plugins: {
-                           tooltip: { enabled: false }},
-                    scales: {y: {beginAtZero: true}}}
+                            tooltip: { enabled: false }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
                 });
             };
-            reader.readAsText(file);}
+            lettore.readAsText(file);
+        }
     </script>
 </body>
 </html>
